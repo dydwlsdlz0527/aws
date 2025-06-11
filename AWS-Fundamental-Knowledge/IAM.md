@@ -1,11 +1,14 @@
-## IAM ?
-- AWS 리소스에 대한 안전한 접근 제어를 지원하는 서비스
+## IAM
+> 💡AWS Identity and Access Management(IAM)를 사용하면 AWS 서비스와 리소스에 대한 액세스를 안전하게 관리할 수 있다. 또한 AWS 사용자 및 그룹을 만들고 관리하며 AWS 리소스에 대한 액세스를 허용 및 거부할 수 있다.
+
+- AWS 리소스/사용자/서비스에 대한 안전한 접근 제어를 지원하는 서비스
 - 리소스에 대한 인증 및 권한 부여 기능 보유
 - 그 외 다양한 기능
   - 암호나 엑세스키를 공유하지 않고, AWS 계정 접근
   - 세분화 된 권한을 통해 API 별 권한 허용/거부
   - MFA(Multi-Factor Authentication)
   - SAML/OIDC 등을 통한 다양한 Identity Federation 기능
+  - 사용자의 패스워드 정책 관리
 - AWS 상에서 제로 트러스트를 구현하게 해주는 중요한 서비스
 
 ## IAM: User & Group
