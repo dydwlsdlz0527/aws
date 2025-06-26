@@ -56,6 +56,29 @@
   - 더 많은 네트워크 대역폭
   - EBS와의 통신 가능한 대역폭
 
+### EC2 접근
+<img src="images/ec2-connection.png" alt="ec2-connection" width=500/>
+
+<img src="images/ec2-keypair.png" alt="ec2-keypair" width=500/>
+
+- ssh key pair로 인증
+- iam 인증 + root password
+
+### EC2 인스턴스 생명 주기
+
+<img src="images/ec2-lifecycle.png" alt="ec2-lifecycle" width=500/>
+
+- 중지
+  - 중지 중에는 인스턴스 요금 미 청구
+  - 단 EBS 요금, 다른 구성 요소(Elastic IP등)은 청구
+  - 중지 후 재시작 시 퍼블릭 IP 변경
+  - EBS를 사용하는 인스턴스만 중지 가능: 인스턴스 저장 인스턴스는 중지 불가
+
+- 재부팅
+  - 재부팅 시에는 퍼블릭 IP 변동 없음
+- 최대 절전모드
+  - 메모리 내용을 보존해서 재시작시 중단지점에서 시작할 수 있는 정지모드
+
 ## EBS (Amazon Elastic Block Store)
 > 💡AWS 클라우드의 Amazon EC2 인스턴스에 사용할 영구 블록 스토리지 볼륨을 제공한다. 각 Amazon EBS 볼륨은 가용 영역 내에 자동으로 복제되어 구성 요소 장애로부터 보호해주고, 고가용성 및 내구성을 제공한다.
 
@@ -118,3 +141,39 @@
 - 인스턴스 단위
   - 하나의 인스턴스에 하나 이상의 보안 그룹 설정 가능
   - 인스턴스에 여러 보안 그룹이 적용될 경우 모든 보안 그룹의 규칙을 적용 받음
+
+
+### AMI 생성하기
+<img src="images/create-ami.png" alt="ami 생성" />
+
+<img src="images/create-ami2.png" alt="ami 생성2" />
+
+### AMI로 EC2 인스턴스 생성하기
+
+<img src="images/create-ami-ec2-instance.png" alt="create-ami-ec2-instancea" />
+
+## ENI(Elastic Network Interface)
+> 💡탄력적 네트워크 인터페이스는 VPC에서 가상 네트워크 카드를 나타내는 논리적 네트워킹 구성 요소입니다.
+
+- EC2의 가상의 랜카드
+- IP 주소와 Mac 주소를 보유
+- 하나의 인스턴스에 여러 개의 ENI를 연동 가능
+  - 하나의 인스턴스가 한 개 이상의 IP를 보유 가능
+- 인스턴스 유형 및 사이즈에 따라 최대 보유 가능한 IP 주소가 변동
+- 내부적으로는 보안 그룹은 ENI에 부착
+- 기본적으로 Private IP 주소와 Private DNS 보유
+  - 선택적으로 Public IP와 Public DNS 보유
+
+### 탄력적 IP(Elastic IP)
+- EC2의 퍼블릭 IP를 고정해주는 서비스
+  - 즉 인스턴스를 중지 -> 재시작해도 고정적인 IP를 확보 가능
+  - EC2 이외에 다른 서비스(예:NLB)에도 사용
+  - 내가 보유한 IP 주소를 AWS에서 사용 가능
+  - 리전 단위
+  - 연결하지 않아도 보유하기만 해도 비용 발생(IPv4 비용 발생)
+
+
+### EC2와 ENI
+<img src="images/eni.png" alt="eni" />
+
+<img src="images/eni2.png" alt="eni2" />
